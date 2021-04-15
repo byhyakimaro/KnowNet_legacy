@@ -26,7 +26,7 @@ int main()
     if (!std::ifstream(destFile)) {
 
         system("cls");
-        printf("Downloading Updated..");
+        printf("Downloading Files...");
         Sleep(3000);
         CreateDirectory(L"bin", NULL);
         // URLDownloadToFile returns S_OK on success
