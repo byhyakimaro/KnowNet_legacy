@@ -153,7 +153,17 @@ int main()
         r.header["content-type"];       // application/json; charset=utf-8
         r.text;                         // JSON text string
 
-        std::cout << r.text << std::endl;
+        //Tratamento de dados
+        std::string s = r.text;
+        std::string delimiter = "\"";
+        size_t pos = 0;
+        std::string token;
+        while ((pos = s.find(delimiter)) != std::string::npos) {
+            token = s.substr(0, pos);
+            s.erase(0, pos + delimiter.length());
+        }
+
+        cout << token;
 
         char MD5[33] = "c67e931ad743d1d77daa09bc1b079574";//SIMULATION REQUEST
 
