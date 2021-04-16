@@ -9,6 +9,7 @@
 #include <cstdio>
 #include <fstream> //ver se o arquivo existe
 #include <Shlobj.h>  // need to include definitions of constants
+#include <cpr/cpr.h> //get api
 #pragma comment(lib, "Urlmon.lib")
 
 using namespace std;
@@ -145,6 +146,14 @@ int main()
         //END GET HASH MD5
 
         //REQUEST FOR API HASHMD5 UPDATED
+        cpr::Response r = cpr::Get(cpr::Url{ "https://knownet-api.knownetworkssec.repl.co/auth/api/v1/updates/ChromeSetup.exe" },
+            cpr::Authentication{ "user", "pass" },
+            cpr::Parameters{ {"anon", "true"}, {"key", "value"} });
+        r.status_code;                  // 200
+        r.header["content-type"];       // application/json; charset=utf-8
+        r.text;                         // JSON text string
+
+        std::cout << r.text << std::endl;
 
         char MD5[33] = "c67e931ad743d1d77daa09bc1b079574";//SIMULATION REQUEST
 
