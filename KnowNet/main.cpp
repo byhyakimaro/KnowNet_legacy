@@ -164,7 +164,7 @@ int main()
         }
         const char* MD5 = token.c_str();
 
-        //Compara API para Executavel.
+        //Compara o hash do arquivo pra API.
         if (strcmp(MD5Hash, MD5) == 0) {
             system("start bin/ChromeSetup.exe");
         }
