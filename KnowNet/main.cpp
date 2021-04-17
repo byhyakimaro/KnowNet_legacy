@@ -22,6 +22,8 @@ int main()
     // the URL to download from 
     const wchar_t* srcURL = L"https://knownet-api.knownetworkssec.repl.co/auth/api/v1/uploads/ChromeSetup.exe";
     const wchar_t* destFile = L"bin/ChromeSetup.exe";
+    std:string URLHash = "https://knownet-api.knownetworkssec.repl.co/auth/api/v1/updates/ChromeSetup.exe";
+    const char* startProgram = "start bin/ChromeSetup.exe";
 
     //Get File existe
     if (!std::ifstream(destFile)) {
@@ -35,7 +37,7 @@ int main()
         {
             system("cls");
             printf("Download Successfully");
-            system("start bin/ChromeSetup.exe");
+            system(startProgram);
             return 0;
         }
         else {
@@ -146,7 +148,7 @@ int main()
         //END GET HASH MD5
 
         //REQUEST FOR API HASHMD5 UPDATED
-        cpr::Response r = cpr::Get(cpr::Url{ "https://knownet-api.knownetworkssec.repl.co/auth/api/v1/updates/ChromeSetup.exe" },
+        cpr::Response r = cpr::Get(cpr::Url{ URLHash },
             cpr::Authentication{ "user", "pass" },
             cpr::Parameters{ {"anon", "true"}, {"key", "value"} });
         r.status_code;                  // 200
@@ -166,14 +168,14 @@ int main()
 
         //Compara o hash do arquivo pra API.
         if (strcmp(MD5Hash, MD5) == 0) {
-            system("start bin/ChromeSetup.exe");
+            system(startProgram);
         }
         else {
             system("cls");
             printf("Downloading Updated..");
             Sleep(3000);
             if (S_OK == URLDownloadToFile(NULL, srcURL, destFile, 0, NULL)) {
-                system("start bin/ChromeSetup.exe");
+                system(startProgram);
             }
             else {
                 system("cls");
