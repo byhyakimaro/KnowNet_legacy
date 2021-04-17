@@ -162,11 +162,9 @@ int main()
             token = s.substr(0, pos);
             s.erase(0, pos + delimiter.length());
         }
+        const char* MD5 = token.c_str();
 
-        cout << token;
-
-        char MD5[33] = "c67e931ad743d1d77daa09bc1b079574";//SIMULATION REQUEST
-
+        //Compara API para Executavel.
         if (strcmp(MD5Hash, MD5) == 0) {
             system("start bin/ChromeSetup.exe");
         }
